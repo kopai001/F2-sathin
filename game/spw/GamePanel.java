@@ -18,6 +18,16 @@ public class GamePanel extends JPanel {
 		big.clearRect(0, 0, 400, 600);
 	}
 
+	public void updateGameUI(GameReporter reporter){
+
+		big.setColor(Color.WHITE);		
+		big.drawString(String.format("%08d", reporter.getScore()), 300, 20);
+		/*for(int i=1;i<0;i++){
+
+		}*/
+		repaint();
+	}
+
 
 	@Override
 	public void paint(Graphics g) {

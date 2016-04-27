@@ -11,6 +11,7 @@ public class frame {
 		frame.getContentPane().setLayout(new BorderLayout());
 		
 		GamePanel gp = new GamePanel();
+		GameEngine engine = new GameEngine(gp);
 		frame.getContentPane().add(gp,BorderLayout.CENTER);
 		frame.setVisible(true);
 
