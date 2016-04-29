@@ -93,6 +93,7 @@ public class GameEngine implements KeyListener,GameReporter{
 	}
 	public void die(){
 		timer.stop();
+		
 	}
 
 	@Override
