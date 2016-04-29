@@ -11,8 +11,11 @@ public class GameEngine implements  GameReporter{
 	private Timer timer;
 	private long score = 0;
 	private double difficulty = 0.1;
+	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();	
 
 	public GameEngine(GamePanel gp) {
+		this.gp = gp;
+
 		timer = new Timer(50, new ActionListener() {
 			
 			@Override
@@ -27,15 +30,40 @@ public class GameEngine implements  GameReporter{
 	public void start(){
 		timer.start();
 	}
+	private void generateEnemy(){
+		Enemy e = new Enemy((int)(Math.random()*390), 30);
+		gp.sprites.add(e);
+		enemies.add(e);
+	}
 
 
 	private void process(){
-
-		for(int i=1;i>0;i++){
-			score += 100;
+		
+		if(Math.random() < difficulty){
+			generateEnemy();
+		}
+		
+		Iterator<Enemy> e_iter = enemies.iterator();
+		while(e_iter.hasNext()){
+			Enemy e = e_iter.next();
+			e.proceed();
+			
+			if(!e.isAlive()){
+				e_iter.remove();
+				gp.sprites.remove(e);
+				score += 100;
+			}
+		}
+		
+		gp.updateGameUI(this);
+		
+		
+		Rectangle2D.Double er;
+		for(Enemy e : enemies){
+			er = e.getRectangle();
+			
 		}
 	}
-
 	public long getScore(){
 		return score;
 	}

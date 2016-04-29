@@ -2,7 +2,7 @@ package game.spw;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel {
@@ -10,6 +10,7 @@ public class GamePanel extends JPanel {
 	private BufferedImage bi;	
 	Graphics2D big;
 	
+	ArrayList<Sprite> sprites = new ArrayList<Sprite>();
 
 	public GamePanel() {
 		bi = new BufferedImage(400, 600, BufferedImage.TYPE_INT_ARGB);
@@ -22,9 +23,9 @@ public class GamePanel extends JPanel {
 
 		big.setColor(Color.WHITE);		
 		big.drawString(String.format("%08d", reporter.getScore()), 300, 20);
-		/*for(int i=1;i<0;i++){
-
-		}*/
+		for(Sprite s : sprites){
+			s.draw(big);
+		}
 		repaint();
 	}
 
